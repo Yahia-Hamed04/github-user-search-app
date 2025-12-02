@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+* {
+ box-sizing: border-box;
+}
+
+:root {
+ --color-neutral-000: #FFFFFF;
+ --color-neutral-100: #F6F8FF;
+ --color-neutral-300: #697C9A;
+ --color-neutral-500: #4B6A9B;
+ --color-neutral-700: #2B3442;
+ --color-neutral-900: #141D2F;
+ --color-red-500:     #F74646;
+ --color-blue-500:    #0079FF;
+ --color-blue-300:    #60ABFF;
+ --color-box-shadow:  #4660BB33;
+ font-size: 16px;
+}
+
+body {
+ margin: 0;
+ overflow-x: hidden;
+}
+
+a {
+ color: currentColor;
+ text-decoration: none;
+}
+
+a:hover {
+ text-decoration: underline;
+}
+
+:focus {
+ outline-color: var(--color-blue-500);
+}
+
+.adaptive {
+ --color-neutral-000: #141D2F;
+ --color-neutral-100: #2B3442;
+ --color-neutral-300: #4B6A9B;
+ --color-neutral-500: #697C9A;
+ --color-neutral-700: #F6F8FF;
+ --color-neutral-900: #FFFFFF;
+ color: var(--color-neutral-900);
+}
