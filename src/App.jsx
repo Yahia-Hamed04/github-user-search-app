@@ -11,7 +11,7 @@ import WebsiteIcon from "./assets/icon-website.svg?react";
 import CompanyIcon from "./assets/icon-company.svg?react";
 import "./App.css";
 
-const octokit = new Octokit({auth: "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"});
+const octokit = new Octokit({auth: import.meta.env.API_KEY});
 
 function Header({isDarkMode, setIsDarkMode}) {
  return (
