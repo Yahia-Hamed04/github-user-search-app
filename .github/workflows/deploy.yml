@@ -19,7 +19,8 @@ permissions:
 concurrency:
   group: 'pages'
   cancel-in-progress: true
-
+env:
+  API_KEY: ${{ secrets.API_KEY }}
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -39,8 +40,6 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
