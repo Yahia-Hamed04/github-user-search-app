@@ -129,7 +129,6 @@ async function fetchData(query, setUsers, options = {per_page: 10}) {
  const results = obj.data.items;
  const newUsers = await Promise.all(results.map(async ({url}) => (await octokit.request(`GET ${url}`)).data));
 
- console.log(newUsers);
  setUsers(newUsers);
 }
 
