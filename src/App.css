@@ -271,9 +271,14 @@
  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
  .search-input {
-  font-size: .8rem;
+  font-size: 0.75rem;
+ }
+
+ .search-btn {
+  padding: 0.8rem 1rem;
+  font-size: 0.8rem;
  }
 
  .user-card {

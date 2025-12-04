@@ -26,13 +26,14 @@ function Header({isDarkMode, setIsDarkMode}) {
 }
 
 function Search({onSubmit, numResults}) {
+ const matches = useMediaQuery({query: "(max-width: 600px)"});
  return (
   <form className="search" onSubmit={onSubmit}>
    <label htmlFor="search-input" className="search-icon">
     <SearchIcon />
    </label>
-   <input type="text" className="search-input show-warn" id="search-input" placeholder="Search GitHub username..." />
-   <span className={`search-results ${numResults === 0 ? "show" : ""}`}>No results</span>
+   <input type="text" className="search-input" id="search-input" placeholder={`Search ${matches ? "" : "GitHub "}username...`} />
+   <span className={`search-results${!matches && numResults === 0 ? " show" : ""}`}>No results</span>
    <button type="submit" className="search-btn">Search</button>
   </form>
  )
@@ -86,7 +87,7 @@ function UserCard({user}) {
       }
      <div className="user-name">
       <div className="user-name__screen-name">{user.name}</div>
-      <div className="user-name__handle">@{user.login}</div>
+      <a href={user.html_url} className="user-name__handle">@{user.login}</a>
       { matches ? <div className="user-date">Joined {formatDate(new Date(user.created_at), "dd MMM yyyy")}</div> : null}
      </div>
      { !matches ? <div className="user-date">Joined {formatDate(new Date(user.created_at), "dd MMM yyyy")}</div> : null}
@@ -128,6 +129,7 @@ async function fetchData(query, setUsers, options = {per_page: 10}) {
  const results = obj.data.items;
  const newUsers = await Promise.all(results.map(async ({url}) => (await octokit.request(`GET ${url}`)).data));
 
+ console.log(newUsers);
  setUsers(newUsers);
 }
 
@@ -145,7 +147,7 @@ export default function App() {
  }, [query]);
   
  return (
-  <div className={`container ${isDarkMode ? "adaptive": ""}`}>
+  <div className={`container${isDarkMode ? " adaptive": ""}`}>
    <Header {...{isDarkMode, setIsDarkMode}}/>
    <Search numResults={query.length ? users.length : -1} onSubmit={e => {
     e.preventDefault();
